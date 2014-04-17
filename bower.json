@@ -1,0 +1,25 @@
+{
+  "name": "locus",
+  "version": "0.0.0",
+  "authors": [
+    "Brett Bukowski <brett.bukowski@gmail.com>"
+  ],
+  "description": "Modal window Polymer element",
+  "main": "index.js",
+  "keywords": [
+    "modal",
+    "dialog",
+    "polymer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~0.2.2"
+  }
+}
