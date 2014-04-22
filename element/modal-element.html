@@ -1,0 +1,33 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="modal-widget" attributes="open">
+  <template>
+    <style>
+    [aria-hidden="true"] {
+      display: none;
+    }
+    </style>
+
+    <div role="group">
+      <div aria-hidden="{{!open}}" tabindex="0">
+        <content></content>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer('modal-widget', {
+      summary: "reveal content",
+      open: false,
+      toggle: function () {
+        this.open = !this.open;
+      },
+      show: function () {
+        this.open = true;
+      },
+      hide: function () {
+        this.open = false;
+      }
+    });
+  </script>
+</polymer-element>
