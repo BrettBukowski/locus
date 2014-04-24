@@ -1,0 +1,80 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+}
+
+.clearfix::before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+}
+form input[type="text"],
+form input[type="email"] {
+  width: 80%;
+  padding: 4px;
+}
+button,
+input[type="submit"],
+input[type="button"] {
+  border-radius: 4px;
+  border: 0;
+  background: #5EB15E;
+  color: #FFF;
+  cursor: pointer;
+  padding: 4px 10px;
+}
+
+
+/* Dialogs */
+
+modal-widget {
+}
+
+modal-widget .title {
+  float: left;
+  width: 95%;
+}
+modal-widget .close {
+  color: #000;
+  float: left;
+  text-decoration: none;
+}
+
+modal-widget form {
+  clear: both;
+}
+
+modal-widget form div {
+  margin: 1em 0;
+}
+
+modal-widget .controls {
+  text-align: right;
+}
+
+/* Fullscreen */
+
+
+/* Traditional dialog */
+.traditional .header {
+  overflow: hidden;
+  padding: 9px;
+/*  background: #CCC;*/
+}
+.traditional .content {
+/*  border: 1px solid #CCC;*/
+  padding: 1em;
+}
+.traditional .controls {
+/*  border: 1px solid #CCC;*/
+}
