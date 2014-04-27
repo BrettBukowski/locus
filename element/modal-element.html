@@ -81,7 +81,7 @@
     }
     </style>
 
-    <div id="overlay" aria-hidden="{{!open}}" tabindex="0" role="dialog" data-fullscreen="{{fullscreen}}">
+    <div id="overlay" aria-hidden="{{!open}}" tabindex="0" role="dialog" data-fullscreen="{{fullscreen}}" on-keydown="{{keydownHandler}}" on-keyup="{{keyupHandler}}">
       <div id="content">
         <content></content>
       </div>
@@ -89,54 +89,108 @@
     <div id="mask" role="presentation"></div>
   </template>
   <script>
-    function focusSubsequently (id) {
-      var el = (typeof id == 'string') ? document.getElementById(id) : id;
-      if (el) {
-        setTimeout(function () { el.focus(); });
+    (function () {
+      'use strict';
+
+      var focusable = 'a,input,select';
+
+      function focusSubsequently (id) {
+        var el = (typeof id == 'string') ? document.getElementById(id) : id;
+        if (el) {
+          setTimeout(function () { el.focus(); });
+        }
       }
-    }
-    Polymer('modal-widget', {
-      summary: "content dialog",
 
-      open: false,
+      function lastFocusableElement (parent) {
+        var focusableElements = parent.querySelectorAll(focusable);
+        return focusableElements[focusableElements.length - 1];
+      }
 
-      fullscreen: false,
+      function focusFirst (parent) {
+        parent.querySelector(focusable).focus();
+      }
 
-      initialfocus: "",
+      Polymer('modal-widget', {
+        summary: "content dialog",
 
-      closefocus: "",
+        open: false,
 
-      ready: function () {
-        document.addEventListener('keyup', function (e) {
-          if (this.open && e.keyCode == 27) {
+        fullscreen: false,
+
+        initialfocus: "",
+
+        closefocus: "",
+
+        ready: function () {
+          this.fire( 'ready' );
+        },
+
+        /**
+         * Handle tab loop to prevent tab focus from leaving the dialog.
+         */
+        keydownHandler: function (event) {
+          if (event.keyCode == 9 /* TAB */) {
+            var lastFocusable = lastFocusableElement(this);
+
+            if (event.shiftKey) {
+              if (document.activeElement.isEqualNode(this.$.overlay.impl)) {
+                event.preventDefault();
+                if (lastFocusable) {
+                  lastFocusable.focus();
+                }
+              }
+              return;
+            }
+
+            if (lastFocusable && lastFocusable.isEqualNode(document.activeElement)) {
+              event.preventDefault();
+              this.$.overlay.focus();
+            }
+          }
+        },
+
+        /**
+         * Close the dialog on ESC key.
+         */
+        keyupHandler: function (event) {
+          if (event.keyCode == 27 /* ESC */) {
             this.toggle();
           }
-        }.bind(this));
-      },
+        },
 
-      toggle: function () {
-        this.open = !this.open;
-      },
+        toggle: function () {
+          if (this.open) {
+            this.hide();
+          }
+          else {
+            this.show();
+          }
+        },
 
-      show: function () {
-        this.open = true;
-      },
+        show: function () {
+          this.fire( 'show' );
 
-      hide: function () {
-        this.open = false;
-      },
+          this.open = true;
+        },
 
-      openChanged: function () {
-        if (this.initialfocus && this.open) {
-          focusSubsequently(this.initialfocus);
+        hide: function () {
+          this.fire( 'hide' );
+
+          this.open = false;
+        },
+
+        openChanged: function () {
+          if (this.initialfocus && this.open) {
+            focusSubsequently(this.initialfocus);
+          }
+          else if (this.closefocus && !this.open) {
+            focusSubsequently(this.closefocus);
+          }
+          else if (this.open) {
+            focusSubsequently(this.$.overlay);
+          }
         }
-        else if (this.closefocus && !this.open) {
-          focusSubsequently(this.closefocus);
-        }
-        else if (this.open) {
-          focusSubsequently(this.$.overlay);
-        }
-      }
-    });
+      });
+    })();
   </script>
 </polymer-element>
