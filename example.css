@@ -4,8 +4,22 @@
   box-sizing: border-box;
 }
 html {
-  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #444;
+  font-family:'Open Sans', sans-serif;
   font-size: 18px;
+}
+
+body {
+  padding: 0 20% 1em;
+  text-align: center;
+}
+
+h1 {
+  font-weight: normal;
+}
+
+h2 {
+  margin-top: 2em;
 }
 
 .clearfix::before {
@@ -26,18 +40,55 @@ form input[type="email"] {
 button,
 input[type="submit"],
 input[type="button"] {
-  border-radius: 4px;
+  border-radius: 2px;
   border: 0;
-  background: #5EB15E;
+  background: #777;
   color: #FFF;
   cursor: pointer;
-  padding: 4px 10px;
+  font-size: larger;
+  padding: 8px 14px;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+}
+button:hover,
+button:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:hover,
+input[type="button"]:focus {
+  background: #666;
 }
 
+
+.examples {
+  text-align: left;
+}
+pre {
+  background: #EEE;
+  border-radius: 2px;
+  overflow: scroll;
+  padding: 0 1em;
+}
+
+.triggers {
+  padding: 2em 0;
+  border-bottom: 1px solid #CCC;
+}
 
 /* Dialogs */
 
 modal-widget {
+  text-align: left;
+}
+
+modal-widget ul {
+  margin: 0;
+  padding: 0;
+}
+
+modal-widget ul li {
+  list-style-type: none;
 }
 
 modal-widget .title {
@@ -46,8 +97,9 @@ modal-widget .title {
 }
 modal-widget .close {
   color: #000;
-  float: left;
+  float: right;
   text-decoration: none;
+  width: 5%;
 }
 
 modal-widget form {
@@ -64,17 +116,66 @@ modal-widget .controls {
 
 /* Fullscreen */
 
-
-/* Traditional dialog */
-.traditional .header {
-  overflow: hidden;
-  padding: 9px;
-/*  background: #CCC;*/
+.fullscreen ul {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 100%;
 }
-.traditional .content {
-/*  border: 1px solid #CCC;*/
+.fullscreen a {
+  text-decoration: none;
+}
+.fullscreen .close {
+  position: fixed;
+  right: -100px;
+  top: 0;
+  color: #888;
+  font-size: 3em;
+}
+
+/* Dialogs */
+
+.dialog .header {
+  overflow: hidden;
   padding: 1em;
 }
-.traditional .controls {
-/*  border: 1px solid #CCC;*/
+.dialog .content {
+  padding: 1em;
+}
+.dialog .controls {
+  padding: 1em;
+}
+
+/* Alert */
+
+.alert.dialog .header {
+  border-bottom: 1px solid #CCC;
+}
+.alert.dialog .content {
+  padding: 2em 1em;
+  min-height: 120px;
+  min-width: 300px;
+}
+.alert.dialog .controls {
+  border-top: 1px solid #CCC;
+}
+
+/* Video dialog */
+
+.video .close {
+  color: #FFF;
+  font-size: 1.4em;
+}
+
+.video::shadow #mask {
+  background: rgba(0, 0, 0, .9);
+}
+.video::shadow #overlay #content {
+  border: 0;
+}
+
+.video::shadow #overlay #content {
+  background: none;
+/*  margin: auto;*/
+/*  text-align: center;*/
+/*  width: 100%;*/
 }

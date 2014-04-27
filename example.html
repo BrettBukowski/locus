@@ -5,66 +5,217 @@
         <link rel="import" href="element/modal-element.html">
         <meta charset="utf-8">
         <title>Locus Example</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="example.css" type="text/css" media="screen" title="no title" charset="utf-8">
     </head>
     <body>
-      <h1>Modal Widget</h1>
+      <h1>locus |ˈlōkəs| <small>Modal Widget</small></h1>
 
-      <section>
+      <p>
+        A <a href="http://www.polymer-project.org/">Polymer</a> web component.
+      </p>
 
-        <h2>Fullscreen</h2>
+      <section class="triggers">
+        <div>
+          <button aria-haspopup="true" data-toggle="modal-one" id="trigger1">Fullscreen</button>
+          <button aria-haspopup="true" data-toggle="modal-four" id="trigger4">Fullscreen form</button>
+        </div>
 
-        <button data-toggle="modal-one" id="trigger1">Trigger</button>
+        <div>
+          <button aria-haspopup="true" data-toggle="modal-two" id="trigger2">Traditional modal</button>
+          <button aria-haspopup="true" data-toggle="modal-three" id="trigger3">Alert</button>
+          <button aria-haspopup="true" data-toggle="modal-five" id="trigger5">Video modal</button>
+        </div>
+      </section>
 
-        <modal-widget id="modal-one" aria-describedby="modal-one-title" fullscreen initialfocus="email" closefocus="trigger1">
-          <div class="header">
-            <span class="title" id="modal-one-title">Title</span>
-            <a href="#" class="close" role="button" data-toggle="modal-one">×</a>
-          </div>
+      <section class="examples">
+        <pre>
+          <code class="language-html">
+&lt;modal-widget&gt;
+  Modal content here
+&lt;/modal-widget&gt;</code>
+        </pre>
 
-          <form>
-            <div>
-              <label for="email">Email Address</label>
-              <input type="email" id="email">
-            </div>
+        <h2>Attributes</h2>
 
-            <div>
-              <label for="name">Name</label>
-              <input type="text" id="name">
-            </div>
+        <h3>fullscreen attribute</h3>
+        <pre>
+          <code class="language-html">
+&lt;modal-widget fullscreen&gt;
+  Fullscreen content
+&lt;/modal-widget&gt;</code>
+        </pre>
 
-            <div class="controls">
-              <input type="submit" value="Submit">
-              <a href="#" role="button" data-toggle="modal-one">close</a>
-            </div>
-          </form>
-        </modal-widget>
+        <h3>open attribute</h3>
+        <pre>
+          <code class="language-html">
+&lt;modal-widget open&gt;
+  Modal content is immediately shown
+&lt;/modal-widget&gt;</code>
+        </pre>
+
+        <h3>initialfocus attribute</h3>
+        <pre>
+          <code class="language-html">
+&lt;modal-widget initialfocus="email-addess"&gt;
+  &lt;input id="email-address" type="email"&gt;
+  Element is focused when the dialog is shown.
+&lt;/modal-widget&gt;</code>
+        </pre>
+        <p>
+          Id of an element to focus on when the dialog is <i>shown</i>.
+        </p>
+
+        <h3>closefocus attribute</h3>
+        <pre>
+          <code class="language-html">
+&lt;button id="trigger" onclick="document.querySelector( 'modal-widget' ).toggle()"&gt;Open&lt;/button&gt;
+
+&lt;modal-widget closefocus="trigger"&gt;
+  Modal content here
+&lt;/modal-widget&gt;</code>
+        </pre>
+        <p>
+          Id of an element to focus on when the dialog is <i>hidden</i>.
+        </p>
+
+        <h2>JavaScript API</h2>
+
+        <h3>Hiding and showing</h3>
+        <pre>
+          <code class="language-html">
+var modal = document.querySelector( 'modal-widget' );
+modal.show();
+modal.hide();
+modal.toggle();</code>
+        </pre>
+
+        <h3>Events</h3>
+        <pre>
+          <code class="language-html">
+var modal = document.querySelector( 'modal-widget' );
+modal.addEventListener('show', function () {
+  // `this` is the modal context.
+});</code>
+        </pre>
+        <p>
+          <ul>
+            <li>ready</li>
+            <li>show</li>
+            <li>hide</li>
+          </ul>
+        </p>
+
+        <h2>CSS</h2>
+        <p>
+          Style like any other HTML element.
+        </p>
+        <pre>
+          <code class="language-html">
+&lt;modal-widget&gt;
+  &lt;h1&gt;Yo&lt;/h1&gt;
+&lt;modal-widget&gt;</code>
+        </pre>
+
+        <pre>
+          <code class="language-css">
+modal-widget h1 {
+  font-size: larger;
+}</code>
+        </pre>
+
+        <p>
+          The <code>modal-element</code>'s <a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/">Shadow DOM</a> may also be targeted.
+        </p>
+        <pre>
+          <code class="language-css">
+modal-widget::shadow #mask {
+  background: rgba(0, 0, 0, .9);
+}</code>
+        </pre>
 
       </section>
 
-      <section>
+      <modal-widget id="modal-one" aria-describedby="modal-one-title" fullscreen closefocus="trigger1" class="fullscreen">
 
-        <h2>Dialog</h2>
+        <a href="#" class="close" role="button" data-toggle="modal-one">×</a>
 
-        <button data-toggle="modal-two">Trigger</button>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
 
-        <modal-widget id="modal-two" aria-describedby="modal-two-title" class="traditional">
+      </modal-widget>
 
-          <div class="header">
-            <span class="title" id="modal-two-title">Info</span>
-            <a href="#" class="close" role="button" data-toggle="modal-two">×</a>
+      <modal-widget id="modal-two" aria-describedby="modal-two-title" class="dialog" closefocus="trigger2">
+
+        <div class="header">
+          <span class="title" id="modal-two-title">Info</span>
+          <a href="#" class="close" role="button" data-toggle="modal-two">×</a>
+        </div>
+
+        <div class="content clearfix">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+
+        <div class="controls">
+          <input type="button" value="OK" data-toggle="modal-two">
+        </div>
+
+      </modal-widget>
+
+      <modal-widget id="modal-three" aria-describedby="modal-three-title" class="alert dialog" closefocus="trigger3">
+
+        <div class="header">
+          <span class="title" id="modal-three-title">Hey</span>
+        </div>
+
+        <div class="content clearfix">
+          Something happened
+        </div>
+
+        <div class="controls">
+          <input type="button" value="OK" data-toggle="modal-three">
+        </div>
+
+      </modal-widget>
+
+      <modal-widget id="modal-four" aria-describedby="modal-four-title" fullscreen initialfocus="email" closefocus="trigger4" class="fullscreen">
+
+        <a href="#" class="close" role="button" data-toggle="modal-four">×</a>
+
+         <div class="header">
+          <span class="title" id="modal-four-title">Title</span>
+          <a href="#" class="close" role="button" data-toggle="modal-four">×</a>
+        </div>
+
+        <form>
+          <div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email">
           </div>
 
-          <div class="content clearfix">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name">
           </div>
 
           <div class="controls">
-            <input type="button" value="OK" data-toggle="modal-two">
+            <input type="submit" value="Submit">
+            <a href="#" role="button" data-toggle="modal-four">close</a>
           </div>
-        </modal-widget>
+        </form>
 
-      </section>
+      </modal-widget>
+
+      <modal-widget id="modal-five" closefocus="trigger5" class="video dialog">
+
+        <a href="#" class="close" role="button" data-toggle="modal-five">×</a>
+
+      </modal-widget>
 
       <script>
         function clickHandler (e) {
@@ -72,6 +223,10 @@
           modal.toggle();
         }
         Array.prototype.forEach.call(document.querySelectorAll( '[data-toggle]' ), function ( button ) { button.addEventListener( 'click', clickHandler ); });
+        document.getElementById('modal-five').addEventListener('show', function () {
+          if (this.$.content.querySelector('iframe')) return;
+          this.$.content.innerHTML += '<iframe width="420" height="315" src="//www.youtube.com/embed/Xkr5ztKiXMM" frameborder="0" allowfullscreen></iframe>';
+        });
       </script>
     </body>
 </html>
