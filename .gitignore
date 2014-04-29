@@ -1,1 +1,16 @@
-bower_components
+bower_components/platform/.bower.json
+bower_components/platform/bower.json
+bower_components/platform/AUTHORS
+bower_components/platform/build.log
+bower_components/platform/CONTRIBUTING.md
+bower_components/platform/PATENTS
+bower_components/platform/platform.js.map
+bower_components/platform/README.md
+bower_components/polymer/.bower.json
+bower_components/polymer/bower.json
+bower_components/polymer/build.log
+bower_components/polymer/component.json
+bower_components/polymer/composer.json
+bower_components/polymer/package.json
+bower_components/polymer/polymer.js.map
+bower_components/polymer/README.md
