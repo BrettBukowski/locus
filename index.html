@@ -7,6 +7,7 @@
         <title>Locus Example</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="example.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/styles/default.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     </head>
     <body>
       <h1>locus |ˈlōkəs| <small>Modal Widget</small></h1>
@@ -83,7 +84,7 @@
 
         <h3>Hiding and showing</h3>
         <pre>
-          <code class="language-html">
+          <code class="language-js">
 var modal = document.querySelector( 'modal-widget' );
 modal.show();
 modal.hide();
@@ -92,7 +93,7 @@ modal.toggle();</code>
 
         <h3>Events</h3>
         <pre>
-          <code class="language-html">
+          <code class="language-js">
 var modal = document.querySelector( 'modal-widget' );
 modal.addEventListener('show', function () {
   // `this` is the modal context.
@@ -183,12 +184,12 @@ modal-widget::shadow #mask {
 
       </modal-widget>
 
-      <modal-widget id="modal-four" aria-describedby="modal-four-title" fullscreen initialfocus="email" closefocus="trigger4" class="fullscreen">
+      <modal-widget id="modal-four" aria-describedby="modal-four-title" fullscreen initialfocus="email" closefocus="trigger4" class="fullscreen form">
 
         <a href="#" class="close" role="button" data-toggle="modal-four">×</a>
 
          <div class="header">
-          <span class="title" id="modal-four-title">Title</span>
+          <span class="title" id="modal-four-title">Signup form</span>
           <a href="#" class="close" role="button" data-toggle="modal-four">×</a>
         </div>
 
@@ -205,7 +206,7 @@ modal-widget::shadow #mask {
 
           <div class="controls">
             <input type="submit" value="Submit">
-            <a href="#" role="button" data-toggle="modal-four">close</a>
+            <input type="button" data-toggle="modal-four" value="Close">
           </div>
         </form>
 
@@ -216,6 +217,12 @@ modal-widget::shadow #mask {
         <a href="#" class="close" role="button" data-toggle="modal-five">×</a>
 
       </modal-widget>
+
+      <section class="triggers">
+        <a href="https://github.com/BrettBukowski/locus">Source on Github</a>
+        |
+        Project maintained by <a href="http://brettbukowski.com">Brett Bukowski</a>
+      </section>
 
       <script>
         function clickHandler (e) {
@@ -228,5 +235,7 @@ modal-widget::shadow #mask {
           this.$.content.innerHTML += '<iframe width="420" height="315" src="//www.youtube.com/embed/Xkr5ztKiXMM" frameborder="0" allowfullscreen></iframe>';
         });
       </script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
     </body>
 </html>

@@ -34,8 +34,9 @@ form label {
 }
 form input[type="text"],
 form input[type="email"] {
+  font-size: 1em;
+  padding: 8px;
   width: 80%;
-  padding: 4px;
 }
 button,
 input[type="submit"],
@@ -114,6 +115,18 @@ modal-widget .controls {
   text-align: right;
 }
 
+@media screen and (max-width: 400px) {
+  modal-widget .controls {
+    text-align: left;
+  }
+  modal-widget .controls a,
+  modal-widget .controls input {
+    display: block;
+    width: 100%;
+    margin-bottom: .5em;
+  }
+}
+
 /* Fullscreen */
 
 .fullscreen ul {
@@ -131,6 +144,12 @@ modal-widget .controls {
   color: #888;
   font-size: 3em;
 }
+@media screen and (max-width: 400px) {
+  .fullscreen .close {
+    right: 0;
+    top: -.4em;
+  }
+}
 
 /* Dialogs */
 
@@ -143,6 +162,29 @@ modal-widget .controls {
 }
 .dialog .controls {
   padding: 1em;
+}
+
+/* Fullscreen Form */
+
+.form::shadow #overlay[data-fullscreen="true"] #content {
+  top: 20%;
+  width: 50%;
+}
+.form .header {
+  margin-bottom: 4em;
+}
+.form .title {
+  font-size: 1.3em;
+}
+.form .controls input {
+  font-size: 1em;
+}
+
+@media screen and (max-width: 400px) {
+  .form input[type="email"],
+  .form input[type="text"] {
+    width: 100%;
+  }
 }
 
 /* Alert */
@@ -175,7 +217,4 @@ modal-widget .controls {
 
 .video::shadow #overlay #content {
   background: none;
-/*  margin: auto;*/
-/*  text-align: center;*/
-/*  width: 100%;*/
 }
